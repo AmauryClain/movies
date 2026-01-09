@@ -1,16 +1,75 @@
-# React + Vite
+# 🎬 Movie App (React + Vite + TMDB)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application React (Vite) qui affiche des films populaires via l’API TMDB, avec page détail, wishlist, pagination et films similaires.
 
-Currently, two official plugins are available:
+## ✅ Prérequis
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js (version récente recommandée)
+- Une clé API TMDB : https://www.themoviedb.org/
 
-## React Compiler
+## 🚀 Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1) Cloner le projet
 
-## Expanding the ESLint configuration
+```bash
+git clone <URL_DU_REPO>
+cd <NOM_DU_DOSSIER>
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 2) Installer les dépendances
+
+```bash
+npm install
+```
+
+### 3) Configurer l’environnement (.env)
+
+Créer un fichier `.env` à partir du template :
+
+```bash
+cp .env.template .env
+```
+
+Puis dans `.env`, ajouter la clé TMDB (important : préfixe Vite) :
+
+```env
+VITE_API_KEY=YOUR_TMDB_API_KEY
+```
+
+➡️ Exemple de `.env.template` :
+
+```env
+VITE_API_KEY=
+```
+
+> ⚠️ Ne pas commit le `.env` (il doit être dans `.gitignore`).
+
+### 4) Lancer l’application
+
+```bash
+npm run dev
+```
+
+L’app sera accessible à l’adresse affichée dans le terminal (souvent `http://localhost:5173`).
+
+## 📦 Scripts utiles
+
+```bash
+npm run dev       # lancer en dev
+npm run build     # build production
+npm run preview   # preview du build
+```
+
+## ✨ Fonctionnalités
+
+- Liste des films populaires (20 films par page) + pagination
+- Détail d’un film (infos, acteurs)
+- Films similaires
+- Wishlist (ajout / retrait + persistance localStorage)
+- Navigation via react-router-dom
+
+## 🗂️ Stack
+
+- React + Vite
+- react-router
+- API: The Movie Database (TMDB)
