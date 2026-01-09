@@ -1,6 +1,6 @@
 import styles from './MovieCard.module.css';
 import { Link } from 'react-router';
-function MovieCard({
+export default function MovieCard({
     id,
     img,
     title,
@@ -19,5 +19,3 @@ function MovieCard({
         </div>
     );
 }
-
-export default MovieCard;
