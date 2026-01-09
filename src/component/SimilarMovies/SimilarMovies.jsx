@@ -17,15 +17,13 @@ export default function SimilarMovies({ movieId }) {
         fetch(
         `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${API_KEY}&language=fr&page=1`
         )
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
+        .then((response) => response.json())
+        .then((data) => {
             const movies = (data.results ?? []).slice(0, limit);
             setSimilarMovies(movies);
             setLoading(false);
         })
-        .catch(function (error) {
+        .catch((error) => {
             console.error("Error fetching similar movies:", error);
             setSimilarMovies([]);
             setLoading(false);
