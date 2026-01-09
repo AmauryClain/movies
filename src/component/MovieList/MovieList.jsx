@@ -12,11 +12,12 @@ function MovieList() {
     }, [API_KEY]);
     return (
         <div>
-            <h1>Movie List</h1>
+            <h1>Liste des films</h1>
             <div className={styles.list}>
                 {movies.map((movie) => (
                     <MovieCard 
-                        id = {movie.id}
+                        key={movie.id}
+                        id={movie.id}
                         img = {"https://image.tmdb.org/t/p/w500" + movie.poster_path}
                         title = {movie.title}
                         overview = {movie.overview}
