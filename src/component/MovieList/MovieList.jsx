@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import styles from './MovieList.module.css';
-function MovieList() {
+export default function MovieList() {
     const [movies, setMovies] = useState([]);
     const API_KEY = import.meta.env.VITE_API_KEY;
     useEffect(() => {
@@ -29,4 +29,3 @@ function MovieList() {
         </div>
     );
 }
-export default MovieList

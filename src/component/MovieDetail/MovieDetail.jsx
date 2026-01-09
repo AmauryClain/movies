@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-function MovieDetail() {
+export default function MovieDetail() {
     const { id } = useParams();
     const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -48,5 +48,3 @@ function MovieDetail() {
         </div>
     );
 }
-
-export default MovieDetail;
