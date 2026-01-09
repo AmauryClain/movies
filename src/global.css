@@ -1,0 +1,31 @@
+:root {
+  /* Backgrounds */
+  --bg: #0B0A12;
+  --bg-2: #0F0E1A;
+
+  /* Surfaces */
+  --surface: #141225;
+  --surface-hover: #1A1730;
+  --border: #262245;
+
+  /* Text */
+  --text: #EAE7FF;
+  --text-2: #B9B3D9;
+  --muted: #8D86B3;
+
+  /* Accent */
+  --accent: #B7A6FF;
+  --accent-hover: #A590FF;
+  --accent-soft: #231C3F;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}

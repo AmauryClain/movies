@@ -11,19 +11,23 @@ export default function MovieList() {
             .catch((error) => console.error("Error fetching movies:", error));
     }, [API_KEY]);
     return (
-        <div>
-            <h1>Liste des films</h1>
+        <div className={styles.page}>
+            <div className={styles.header}>
+                <h1 className={styles.title}>Liste des films</h1>
+                <p className={styles.subtitle}>Les films populaires</p>
+            </div>
             <div className={styles.list}>
                 {movies.map((movie) => (
-                    <MovieCard 
-                        key={movie.id}
-                        id={movie.id}
-                        img = {"https://image.tmdb.org/t/p/w500" + movie.poster_path}
-                        title = {movie.title}
-                        overview = {movie.overview}
-                        releaseDate = {movie.release_date}
-                        voteAverage = {movie.vote_average}
-                    />
+                    <div key={movie.id} className={styles.cardWrapper}>
+                        <MovieCard 
+                            id={movie.id}
+                            img = {"https://image.tmdb.org/t/p/w500" + movie.poster_path}
+                            title = {movie.title}
+                            overview = {movie.overview}
+                            releaseDate = {movie.release_date}
+                            voteAverage = {movie.vote_average}
+                        />
+                    </div>
                 ))}
             </div>
         </div>

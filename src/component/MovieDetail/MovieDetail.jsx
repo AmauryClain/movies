@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import useWishlist from "../../context/useWishlist.jsx";
+import styles from "./MovieDetail.module.css";
 export default function MovieDetail() {
     const { id } = useParams();
     const API_KEY = import.meta.env.VITE_API_KEY;
@@ -36,29 +37,52 @@ export default function MovieDetail() {
         toggleMovieInWishlist(movieToSaveInWishlist);
     }
 
+    function getWishlistButtonClassName() {
+        if (isMovieInWishlist(movie.id)) {
+            return styles.wishlistBtn + " " + styles.wishlistBtnActive;
+        }
+        return styles.wishlistBtn;
+    }
+
     return (
-        <div>
-            <Link to="/">Retour à la liste des films</Link>
-            <h1>{movie.title}</h1>
-            <button onClick={handleWishlistClick}>
-                {isMovieInWishlist(movie.id) ? "Retirer de la liste de souhaits" : "Ajouter à la liste de souhaits"}
-            </button>
-            <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title} />
-            <p>{movie.overview}</p>
-            <p>Date de sortie : {movie.release_date}</p>
-            <p>Note : {movie.vote_average} / 10</p>
-            <h2>Genres</h2>
-            <ul>
-                {movie.genres.map((genre) => (
-                    <li key={genre.id}>{genre.name}</li>
-                ))}
-            </ul>
-            <h2>Acteurs principaux</h2>
-            <ul>
-                {movie.credits.cast.slice(0, 10).map((actor) => (
-                    <li key={actor.id}>{actor.name}</li>
-                ))}
-            </ul>
+        <div className={styles.page}>
+            <Link className={styles.backLink} to="/">Retour à la liste</Link>
+            <div className={styles.hero}>
+                <div className={styles.posterWrap}>
+                    <div className={styles.posterGlow}></div>
+                    <button className={getWishlistButtonClassName()} onClick={handleWishlistClick}>
+                        {isMovieInWishlist(movie.id) ? "★ Dans la wishlist" : "+ Wishlist"}
+                    </button>
+                    <img className={styles.poster} src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title} />
+                    <div className={styles.info}>
+                        <h1 className={styles.title}>{movie.title}</h1>
+                        <div className={styles.tagRow}>
+                            <span className={styles.chip}>⭐ {movie.vote_average} / 10</span>
+                            <span className={styles.chip}>📅 {movie.release_date}</span>
+                            {movie.runtime ? <span className={styles.chip}>⏱️ {movie.runtime} min</span> : null}
+                        </div>
+                        <p className={styles.metaText}>
+                            Genres : {movie.genres && movie.genres.length > 0 ? movie.genres.map(function (g) { return g.name; }).join(", ") : "—"}
+                        </p>
+                        <div className={styles.overviewBox}>
+                            <h2 className={styles.sectionTitle}>Synopsis</h2>
+                            <p className={styles.overview}>{movie.overview}</p>
+                        </div>
+                        <div className={styles.section}>
+                            <h2 className={styles.sectionTitle}>Acteurs principaux</h2>
+                            <div className={styles.castGrid}>
+                                {(movie.credits && movie.credits.cast ? movie.credits.cast.slice(0, 10) : []).map(function (actor) {
+                                    return (
+                                    <span className={styles.actorChip} key={actor.id}>
+                                        {actor.name}
+                                    </span>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
