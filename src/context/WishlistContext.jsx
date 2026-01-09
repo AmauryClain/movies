@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
-const WishlistContext = createContext(null);
+export const WishlistContext = createContext(null);
 
 export function WishlistProvider({ children }) {
     // chargement de la wishlist
@@ -67,12 +67,3 @@ export function WishlistProvider({ children }) {
     );
 }
 
-export function usewishlist() {
-    const contextValue = useContext(WishlistContext);
-
-    if (!contextValue) {
-        throw new Error("useWishlist must be used within a WishlistProvider");
-    }
-
-    return contextValue;
-}

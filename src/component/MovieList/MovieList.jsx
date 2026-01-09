@@ -4,7 +4,7 @@ import styles from './MovieList.module.css';
 export default function MovieList() {
     const [movies, setMovies] = useState([]);
     const API_KEY = import.meta.env.VITE_API_KEY;
-    useEffect(() => {
+    useEffect(function () {
         fetch("https://api.themoviedb.org/3/movie/popular?api_key=" + API_KEY+"&language=fr")
             .then((response) => response.json())
             .then((data) => setMovies(data.results ?? []))
