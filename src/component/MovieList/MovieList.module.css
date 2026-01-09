@@ -47,6 +47,59 @@
     width: 100%;
 }
 
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    gap: 10px;
+}
+
+.pageInfo {
+    color: var(--text-2);
+    font-weight: 800;
+    font-size: 13px;
+    padding: 0 6px;
+}
+
+.pageBtn {
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(183, 166, 255, 0.35);
+    background: rgba(183, 166, 255, 0.12);
+    color: var(--text);
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.pageBtn:hover {
+    transform: translateY(-1px);
+    background: rgba(183, 166, 255, 0.16);
+    border-color: rgba(183, 166, 255, 0.55);
+}
+
+.pageBtn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.loading {
+    color: var(--text-2);
+    margin: 12px 0;
+}
+
+.error {
+    color: var(--text);
+    margin: 12px 0;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(251, 113, 133, 0.12);
+    border: 1px solid rgba(251, 113, 133, 0.35);
+}
+
 @media (min-width: 650px) {
     .cardWrapper {
         flex-basis: 300px;
