@@ -10,12 +10,14 @@ export default function MovieCard({
 }) {
     return (
         <div className={styles.card}>
-            <Link to={"/movies/"+id} className={styles.detailsBtn}>Plus de détails</Link>
             <img className={styles.img} src={img} alt={title} />
-            <h2>{title}</h2>
-            <p>{overview}</p>
-            <p>{releaseDate}</p>
-            <p>{voteAverage} / 10</p>
+            <h2 className={styles.title}>{title}</h2>
+            <p className={styles.overview}>{overview}</p>
+            <div className={styles.metaRow}>
+                <span>{releaseDate}</span>
+                <span className={styles.badge}>{voteAverage} / 10</span>
+            </div>
+            <Link to={"/movies/"+id} className={styles.detailBtn}>Plus de détails</Link>
         </div>
     );
 }
