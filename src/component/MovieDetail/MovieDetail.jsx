@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import useWishlist from "../../context/useWishlist.jsx";
 import styles from "./MovieDetail.module.css";
+import SimilarMovies from "../SimilarMovies/SimilarMovies.jsx";
 export default function MovieDetail() {
     const { id } = useParams();
     const API_KEY = import.meta.env.VITE_API_KEY;
@@ -19,6 +20,11 @@ export default function MovieDetail() {
             })
             .catch((error) => console.error("Error fetching movie details:", error));
     }), [id, API_KEY];
+
+    useEffect(function () {
+        window.scrollTo(0, 0);
+    }, [id]);
+
 
     if (loading) {
         return <p>Chargement...</p>;
@@ -83,6 +89,7 @@ export default function MovieDetail() {
                     </div>
                 </div>
             </div>
+            <SimilarMovies movieId={movie.id} />
         </div>
     );
 }
