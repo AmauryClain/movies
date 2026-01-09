@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
+import useWishlist from "../../context/useWishlist.jsx";
 export default function MovieDetail() {
     const { id } = useParams();
     const API_KEY = import.meta.env.VITE_API_KEY;
 
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(true);
+    const { isMovieInWishlist, toggleMovieInWishlist } = useWishlist();
 
-    useEffect(() => {
+    useEffect(function () {
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=fr&append_to_response=credits`)
             .then((response) => response.json())
             .then((data) => {
@@ -25,10 +27,22 @@ export default function MovieDetail() {
         return <p>Film non trouvé</p>;
     }
 
+    function handleWishlistClick() {
+        const movieToSaveInWishlist = {
+            id: movie.id,
+            title: movie.title,
+            poster_path: movie.poster_path
+        };
+        toggleMovieInWishlist(movieToSaveInWishlist);
+    }
+
     return (
         <div>
             <Link to="/">Retour à la liste des films</Link>
             <h1>{movie.title}</h1>
+            <button onClick={handleWishlistClick}>
+                {isMovieInWishlist(movie.id) ? "Retirer de la liste de souhaits" : "Ajouter à la liste de souhaits"}
+            </button>
             <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title} />
             <p>{movie.overview}</p>
             <p>Date de sortie : {movie.release_date}</p>
